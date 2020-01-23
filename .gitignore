@@ -4,6 +4,7 @@
 bin/
 gen/
 target/
+ignite/
 
 ###############
 # Java class files
