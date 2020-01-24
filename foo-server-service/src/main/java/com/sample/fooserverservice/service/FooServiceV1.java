@@ -13,8 +13,10 @@ import com.sample.fooserverservice.mapper.FooDtoEntityMapper;
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;
 import lombok.extern.log4j.Log4j2;
+import org.apache.ignite.IgniteCache;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -55,17 +57,19 @@ public class FooServiceV1 {
   private FooRepository fooRepository;
   private ApplicationEventPublisher eventPublisher;
   private final PatchHelper patchHelper;
+  private CacheManager igniteCacheManger;
 
   /**
    *
    * @param fooRepository
    */
   @Autowired
-  public FooServiceV1(FooRepository fooRepository, FooDtoEntityMapper fooDtoEntityMapper, ApplicationEventPublisher eventPublisher, PatchHelper patchHelper) {
+  public FooServiceV1(FooRepository fooRepository, FooDtoEntityMapper fooDtoEntityMapper, ApplicationEventPublisher eventPublisher, PatchHelper patchHelper, CacheManager igniteCacheManger) {
     this.fooRepository = fooRepository;
     this.fooDtoEntityMapper = fooDtoEntityMapper;
     this.eventPublisher = eventPublisher;
     this.patchHelper = patchHelper;
+    this.igniteCacheManger = igniteCacheManger;
   }
 
   /**
