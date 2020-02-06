@@ -286,8 +286,8 @@ public class FooServiceV1 {
   /**
    *
    */
-  //@FeignClient(name = "foo-server-service", url = "http://localhost:9080/foo-server-service")
-  @FeignClient(name = "foo-server-service")
+  @FeignClient(name = "foo-server-service", url = "http://localhost:9080")
+  //@FeignClient(name = "foo-server-service")
   @RequestMapping(value = "/foo-server-service")
   public interface FooServerServiceV1Feign {
 
